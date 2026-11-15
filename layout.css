@@ -1,0 +1,169 @@
+/* css/layout.css — the four-row page grid and clean neutral window skin. */
+
+.page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 18px 28px;
+  display: grid;
+  gap: 15px;
+  align-items: stretch;
+  grid-template-columns: 274px repeat(11, minmax(0, 1fr));
+  grid-template-areas:
+    "header  header  header  header  header  header  header  header  header  header  header  header"
+    "slider  slider  slider  slider  slider  slider  slider  slider  slider  slider  slider  slider"
+    "legend  map     map     map     map     map     map     fig1    fig1    fig1    fig1    fig1"
+    "legend  map     map     map     map     map     map     fig2    fig2    fig2    fig2    fig2"
+    "infobox infobox infobox infobox infobox fig3    fig3    fig3    fig3    fig3    fig3    fig3";
+}
+
+/* ---- clean white windows (no ugly colors or background patterns inside windows) ------------------------- */
+
+.slot {
+  min-width: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: var(--bw) solid var(--c-win-border, var(--c-edge));
+  border-radius: var(--r-box);
+  background-color: var(--c-paper);
+  background-image: none;
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 240ms var(--ease-out),
+    box-shadow 220ms var(--ease-out);
+}
+
+#map:hover, #map-legend:hover, #fig1:hover, #fig2:hover, #fig3:hover, #infobox:hover, #year-slider:hover {
+  border-color: var(--c-win-border-hover, var(--c-edge-hover));
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ---- slots ---------------------------------------------------------------------------------------------- */
+
+#site-header {
+  grid-area: header;
+  overflow: visible;
+  border: 0;
+  border-bottom: 2px solid var(--c-win-border, var(--c-edge));
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 16px 0 13px;
+}
+#site-header .hdr-root { align-items: center; }
+#site-header .hdr-controls { align-items: center; gap: 6px 14px; }
+
+#year-slider { grid-area: slider; padding: 12px 22px; }
+#map-legend { grid-area: legend; display: flex; flex-direction: column; }
+#map { grid-area: map; min-height: 576px; }
+#fig1 { grid-area: fig1; min-height: 278px; }
+#fig2 { grid-area: fig2; min-height: 278px; }
+#infobox { grid-area: infobox; }
+#fig3 { grid-area: fig3; min-height: 260px; display: flex; flex-direction: column; justify-content: center; }
+
+/* ---- year slider ---------------------------------------------------------------------------------------- */
+
+#year-slider .sld-root { align-items: flex-start; }
+#year-slider .sld-year { height: 32px; display: flex; align-items: center; }
+#year-slider .sld-input::-webkit-slider-thumb { box-sizing: border-box; width: 16px; height: 16px; }
+#year-slider .sld-input::-moz-range-thumb { box-sizing: border-box; width: 16px; height: 16px; }
+
+/* ---- figures -------------------------------------------------------------------------------------------- */
+
+#fig1 .f1-root, #fig2 .f2-root, #fig3 .f3-root { padding: 16px 20px 14px; }
+#fig1 .f1-plot, #fig2 .f2-plot { min-height: 248px; }
+#fig1 .f1-seg { border-radius: 6px; }
+#fig2 .f2-chip { border-radius: 6px; }
+
+/* ---- infobox -------------------------------------------------------------------------------------------- */
+
+#infobox .ibx-box { border: 0; border-radius: 0; background: transparent; }
+#infobox .ibx-caption { padding: 15px 20px 11px; border-bottom: 1px solid var(--c-edge); }
+#infobox .ibx-row th, #infobox .ibx-row td { border-bottom-color: var(--c-edge); }
+#infobox .ibx-row th { padding-left: 18px; }
+#infobox .ibx-value { white-space: normal; overflow-wrap: break-word; }
+#infobox .ibx-num { white-space: nowrap; }
+#infobox .ibx-spark { width: 96px; padding-right: 18px; }
+#infobox .ibx-foot { padding: 11px 20px 13px; border-top: 1px solid var(--c-edge); }
+
+/* ---- map controls --------------------------------------------------------------------------------------- */
+
+#map .map-back { border-radius: 6px; top: 14px; left: 14px; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08); }
+#map .map-note { border-radius: 6px; top: 14px; max-width: calc(100% - 68px); box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06); }
+#map .maplibregl-ctrl-group { border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08); }
+#map .maplibregl-ctrl-bottom-right {
+  bottom: 10px;
+  right: 10px;
+  max-width: calc(100% - 20px);
+}
+#map .maplibregl-ctrl-attrib {
+  margin: 0;
+  max-width: 100%;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--c-edge);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+#map .maplibregl-ctrl-attrib:not(.maplibregl-compact-show) {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+#map .maplibregl-ctrl-attrib.maplibregl-compact-show {
+  padding: 3px 28px 3px 8px;
+}
+#map .maplibregl-ctrl-attrib-inner {
+  line-height: 1.35;
+}
+#map .maplibregl-popup-content { border-radius: 6px; }
+
+/* ---- breakpoints ---------------------------------------------------------------------------------------- */
+
+@media (max-width: 1199px) {
+  .page {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      "header  header  header  header  header  header  header  header  header  header  header  header"
+      "slider  slider  slider  slider  slider  slider  slider  slider  slider  slider  slider  slider"
+      "map     map     map     map     map     map     map     map     map     map     map     map"
+      "legend  legend  legend  legend  legend  legend  legend  legend  legend  legend  legend  legend"
+      "fig1    fig1    fig1    fig1    fig1    fig1    fig2    fig2    fig2    fig2    fig2    fig2"
+      "infobox infobox infobox infobox infobox infobox infobox infobox infobox infobox infobox infobox"
+      "fig3    fig3    fig3    fig3    fig3    fig3    fig3    fig3    fig3    fig3    fig3    fig3";
+  }
+  #map { min-height: 480px; }
+}
+
+@media (max-width: 899px) {
+  :root { --r-box: 5px; }
+  .page {
+    gap: 12px;
+    padding: 0 12px 24px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "slider"
+      "map"
+      "legend"
+      "infobox"
+      "fig1"
+      "fig2"
+      "fig3";
+  }
+  #map { min-height: 420px; }
+  #year-slider { padding: 10px 16px; }
+  #fig1 .f1-root, #fig2 .f2-root, #fig3 .f3-root { padding: 14px 14px 12px; }
+  #infobox .ibx-caption { padding: 12px 14px 8px; }
+  #infobox .ibx-foot { padding: 9px 14px 11px; }
+}
+
+@media (max-width: 639px) {
+  #map .maplibregl-ctrl-bottom-right { left: 10px; right: 10px; bottom: 8px; max-width: calc(100% - 20px); display: flex; justify-content: flex-end; }
+  #map .maplibregl-ctrl-attrib { font-size: 9.5px; }
+}
+
+@media (max-width: 480px) {
+  #infobox .ibx-spark { width: 74px; padding-right: 12px; }
+  #infobox .ibx-spark svg { width: 56px; }
+  #infobox .ibx-row th { padding-left: 12px; }
+}

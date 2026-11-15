@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <!-- Abstract minimalist flowing contour and orbital curves for the main page background -->
+  <g fill="none" stroke="#8C96A4" stroke-linecap="round" opacity="0.16">
+    <path d="M-80 120 C 120 40, 280 210, 480 130 S 760 50, 880 120" stroke-width="1.2"/>
+    <path d="M-80 154 C 130 74, 290 244, 490 164 S 770 84, 880 154" stroke-width="0.9" opacity="0.7"/>
+    <path d="M-80 410 C 140 500, 320 310, 520 400 S 740 490, 880 410" stroke-width="1.2"/>
+    <path d="M-80 446 C 150 536, 330 346, 530 436 S 750 526, 880 446" stroke-width="0.9" opacity="0.65"/>
+    <path d="M-80 680 C 110 600, 300 760, 500 670 S 750 610, 880 680" stroke-width="1.15"/>
+    <path d="M160 -80 C 80 140, 250 320, 170 520 S 90 740, 160 880" stroke-width="1.1" opacity="0.75"/>
+    <path d="M580 -80 C 660 130, 490 310, 570 510 S 650 730, 580 880" stroke-width="1.1" opacity="0.75"/>
+    <circle cx="400" cy="275" r="145" stroke-width="0.9" stroke-dasharray="3 6" opacity="0.55"/>
+    <circle cx="400" cy="275" r="210" stroke-width="0.85" opacity="0.45"/>
+    <path d="M220 560 Q 400 470 580 560" stroke-width="1" opacity="0.6"/>
+  </g>
+</svg>

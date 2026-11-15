@@ -1,0 +1,203 @@
+/* css/tokens.css — Ember to Ocean design tokens and base typography. */
+
+:root {
+  --c-fire: #D55E00;
+  --c-smoke: #8A7F72;
+  --c-water: #009E73;
+  --c-river: #56B4E9;
+  --c-polluted: #7B3294;
+  --c-fish: #0072B2;
+  --c-year: #E69F00;
+  --c-ink: #1A1D21;
+  --c-muted: #54595D;
+  --c-rule: #D0D7DE;
+  --c-panel: #F6F8FA;
+  --c-link: #2B5FC7;
+  --c-paper: #FFFFFF;
+  --c-canvas: #F5F7FA;
+  --c-contour: #8C7B6B;
+  --c-country: #202122;
+  --c-basin: #E69F00;
+
+  /* Crisp defined window tokens (pastel per country, darkened in case study view) */
+  --c-edge: #DCE2E8;
+  --c-edge-hover: #C5CED8;
+  --c-win-border: #8CD3C9;
+  --c-win-border-hover: #68C0B4;
+  --r-box: 6px;
+  --bw: 2.5px;
+  --shadow-card: 0 2px 10px rgba(15, 23, 42, 0.045), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --shadow-card-hover: 0 6px 18px rgba(15, 23, 42, 0.075), 0 2px 5px rgba(15, 23, 42, 0.045);
+
+  /* Tactile, buttery easing */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --f-serif: 'Source Serif 4', Georgia, serif;
+  --f-sans: 'Inter', system-ui, sans-serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --rule: 1px solid var(--c-rule);
+  --radius: 6px;
+  color-scheme: light;
+}
+
+/* Pastel country-coded window borders */
+html[data-country="canada"] {
+  --c-win-border: #8CD3C9;
+  --c-win-border-hover: #67C0B3;
+}
+html[data-country="usa"] {
+  --c-win-border: #E6A1A9;
+  --c-win-border-hover: #D87F8A;
+}
+html[data-country="russia"] {
+  --c-win-border: #9BB8E6;
+  --c-win-border-hover: #79A0DE;
+}
+
+/* Darkened borders when viewing a case study basin */
+html[data-country="canada"][data-view="basin"] {
+  --c-win-border: #1C7368;
+  --c-win-border-hover: #13544C;
+}
+html[data-country="usa"][data-view="basin"] {
+  --c-win-border: #962E3A;
+  --c-win-border-hover: #75202A;
+}
+html[data-country="russia"][data-view="basin"] {
+  --c-win-border: #264B87;
+  --c-win-border-hover: #1B3766;
+}
+
+html {
+  background-color: var(--c-canvas);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--f-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--c-ink);
+  background-color: var(--c-canvas);
+  background-image: url("./bg-curves.svg");
+  background-size: 760px 760px;
+  background-position: center top;
+  background-repeat: repeat;
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+h1, h2, h3, h4 {
+  font-family: var(--f-serif);
+  font-weight: 700;
+  color: var(--c-ink);
+  margin: 0;
+  line-height: 1.25;
+}
+
+h1 { font-size: 27px; font-weight: 700; letter-spacing: -0.015em; }
+h2 { font-size: 20px; border-bottom: var(--rule); padding-bottom: 3px; margin: 1.1em 0 0.5em; }
+h3 { font-size: 16px; font-weight: 700; margin: 1em 0 0.35em; }
+
+p { margin: 0 0 0.75em; }
+strong, b { font-weight: 600; color: var(--c-ink); }
+
+a {
+  color: var(--c-link);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 150ms var(--ease-out), opacity 150ms var(--ease-out);
+}
+a:hover, a:focus-visible { text-decoration: underline; }
+
+button {
+  font: inherit;
+  color: inherit;
+  background: var(--c-paper);
+  border: var(--rule);
+  border-radius: var(--radius);
+  padding: 4px 11px;
+  cursor: pointer;
+  transition:
+    background-color 160ms var(--ease-out),
+    border-color 160ms var(--ease-out),
+    color 160ms var(--ease-out),
+    box-shadow 160ms var(--ease-out),
+    transform 100ms var(--ease-spring);
+}
+button:hover:not([disabled]) {
+  background: var(--c-panel);
+  border-color: var(--c-edge-hover);
+}
+button:active:not([disabled]) {
+  transform: scale(0.96);
+  transition-duration: 60ms;
+}
+button[disabled] { cursor: default; opacity: 0.45; }
+
+:focus-visible {
+  outline: 2px solid var(--c-link);
+  outline-offset: 2px;
+}
+
+figure { margin: 0; }
+figcaption, .caption {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--c-muted);
+}
+
+/* numbers */
+.num, .mono, td.num, th.num {
+  font-family: var(--f-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+code, kbd, samp {
+  font-family: var(--f-mono);
+  font-size: 0.92em;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 4px 8px;
+  border-bottom: var(--rule);
+}
+th { font-weight: 600; }
+td.num, th.num { text-align: right; }
+
+/* muted italic message written by theme.placeholder() and the static slot placeholders */
+.placeholder {
+  margin: 0;
+  padding: 14px 16px;
+  color: var(--c-muted);
+  font-style: italic;
+  font-size: 14px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@keyframes emberFadeIn {
+  from { opacity: 0.35; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
